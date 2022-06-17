@@ -1,2 +1,3 @@
-# smallProjects
-My mini-projects
+# Projects list:
+My mini-projects are listed below:
+1. Github repository file scraper
