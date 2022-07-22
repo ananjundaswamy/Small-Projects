@@ -1,5 +1,5 @@
 #Importing requests package
-import requests
+import pip._vendor.requests
 
 #Importing BeautifulSoup package
 from bs4 import BeautifulSoup
@@ -9,6 +9,9 @@ from git.repo.base import Repo
 
 #Importing git module
 import git
+
+#Importing OS module
+import os
 
 #Repositories main page
 source_url = 'https://github.com/orgs/r-lib/repositories'
@@ -28,7 +31,7 @@ for i in range(1, 6):
     source_urls_list.append(temp_string)
     
     #HTTP requests received from the respective links
-    request_getter = requests.get(temp_string)
+    request_getter = pip._vendor.requests.get(temp_string)
     
     # soup alias for BeautifulSoup object instantiated
     soup = BeautifulSoup(request_getter.text, 'html.parser')
@@ -55,12 +58,17 @@ for i in range(1, 6):
 
 #Prompts user for input of a valid file path
 #Try-except
-try:
+valid_input_path = False
+
+while (valid_input_path == False):
     #File path requested from user
     file_path = input("Please enter a valid file location to download and store the required github files to: ")
-except:
-    #Exception message printed
-    print("Invalid filepath. Please enter a valid file path to clone the GitHub repo to.")
+    if (os.path.isdir(file_path) == False):
+        valid_input_path = False
+        print("Invalid filepath: " + file_path + "Please enter a valid file path to clone the GitHub repo to.")
+    else:
+        print("Downloading to directory: " + file_path)
+        valid_input_path = True
 
 #Git cloning to clone the repositories from the complete_repo_urls list
 for link in complete_repo_urls:
@@ -70,6 +78,7 @@ for link in complete_repo_urls:
     #Repository names extracted using indexing on the split_link_list
     repo_final_name = split_link_list[len(split_link_list) - 1]
     
+    print ("Downloading module: " + repo_final_name)
     #Repo's clone_from method used here to take in user input as file_path and appended to the repo_final_name string 
     #The above is done to create respective directories for each cloned repository
     #Try-except to see if the repository can be downloaded 
