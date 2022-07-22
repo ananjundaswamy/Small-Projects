@@ -91,3 +91,5 @@ for link in complete_repo_urls:
     except:
         print("Unidentified exception raised. Could not download the files from the repository at: " + link)
         continue
+
+    print ("The download has completed. Please check to see if all the repositories have been downloaded to: " + file_path)
