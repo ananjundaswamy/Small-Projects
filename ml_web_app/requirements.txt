@@ -1,4 +1,4 @@
 Requirements to run the classification web app locally are as follows:
 1. Need to have Streamlit installed locally
-2. Need to have Python 3.6 or above locally
+2. Need to have Python 3.6 or above installed locally
 3. Need to change the file path from line 12 of the source code file to your preferred file path to run the Iris dataset on your machine
